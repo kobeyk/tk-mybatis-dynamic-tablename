@@ -17,25 +17,32 @@
 	</sql>
 
     <select id="getFeatures" statementType="PREPARED" resultType="java.util.List" resultMap="featureEntities">
-        select <include refid="TABLE_COLUMNS"/>  from ${tableName}
+        select <include refid="TABLE_COLUMNS"/>  from gx_feature_${groupId}
     </select>
 
+    <insert id="saveFeature" >
+        insert into gx_feature_${groupId}(<include refid="TABLE_COLUMNS"/>) values(
+        ${entity.id},
+        null,
+        ${entity.metaId},
+        null,
+        )
+    </insert>
 
     <update id="createFeature" statementType="PREPARED" parameterType="string">
-        CREATE TABLE  ${tableName} (
+        CREATE TABLE  gx_feature_${groupId} (
         "id" int8 NOT NULL,
         "geom" "public"."geometry",
         "meta_id" int8,
         "attributes" jsonb
           );
-        CREATE INDEX '"' || 'INDEX_FEATURE_GEOM' || '_' || ${indexId} || '"' ON ${tableName} USING gist (
+        CREATE INDEX  INDEX_GEOM_${groupId}  ON gx_feature_${groupId} USING gist (
           "geom" "public"."gist_geometry_ops_2d"
         );
-        CREATE INDEX  '"' || 'INDEX_FEATURE_METAID' || '_' || ${indexId} || '"'
-           ON ${tableName} USING btree (
+        CREATE INDEX INDEX_META_ID_${groupId} ON gx_feature_${groupId} USING btree (
           "meta_id" "pg_catalog"."int8_ops" ASC NULLS LAST
         );
-        ALTER TABLE ${tableName} ADD CONSTRAINT "gx_feature_pkey" PRIMARY KEY ("id");
+        ALTER TABLE gx_feature_${groupId} ADD CONSTRAINT IN_PK_${groupId} PRIMARY KEY ("id");
     </update>
 
 </mapper>

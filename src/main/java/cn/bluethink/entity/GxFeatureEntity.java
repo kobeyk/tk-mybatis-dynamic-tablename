@@ -1,13 +1,12 @@
 package cn.bluethink.entity;
-import cn.bluethink.model.feature.GxFeatureAttribute;
-import cn.bluethink.model.feature.GxFeatureModel;
+import cn.bluethink.model.GxFeatureAttribute;
+import cn.bluethink.model.GxFeatureModel;
 import cn.bluethink.utils.GxGeneralUtils;
 import cn.bluethink.utils.GxJsonUtils;
 import com.vividsolutions.jts.io.ParseException;
 import tk.mybatis.mapper.entity.IDynamicTableName;
 
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
+/**
+ * 不要固定表名，实现IDynamicTableName接口，即可动态控制实体映射的Table
+ */
 public class GxFeatureEntity implements IDynamicTableName {
 
 
@@ -27,7 +28,7 @@ public class GxFeatureEntity implements IDynamicTableName {
     private Long id;
 
     /**
-     * 一个地理要素
+     * 地理要素
      */
     private byte[] geom;
 
@@ -46,6 +47,10 @@ public class GxFeatureEntity implements IDynamicTableName {
 
 
     public GxFeatureEntity() {
+    }
+
+    public GxFeatureEntity(String tableName) {
+        this.tableName = tableName;
     }
 
     private GxFeatureEntity(GxFeatureModel model) {
@@ -130,4 +135,6 @@ public class GxFeatureEntity implements IDynamicTableName {
     public void setTableName(String tableName) {
         this.tableName = tableName;
     }
+
+
 }

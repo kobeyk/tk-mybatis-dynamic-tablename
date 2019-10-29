@@ -1,4 +1,4 @@
-package cn.bluethink.model.feature;
+package cn.bluethink.model;
 
 import java.util.List;
 
