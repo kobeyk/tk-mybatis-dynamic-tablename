@@ -12,15 +12,6 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * <p>动态表操作单元测试</p>
- *
- * @author yukun24@126.com
- * @version V.1.0.1
- * @company 苏州中科蓝迪
- * @date created on 下午 6:16 2019-10-29
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = App.class)
 public class DTTest {
