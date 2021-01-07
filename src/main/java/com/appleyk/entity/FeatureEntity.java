@@ -1,9 +1,9 @@
-package cn.bluethink.entity;
-import cn.bluethink.model.GxFeatureAttribute;
-import cn.bluethink.model.GxFeatureModel;
-import cn.bluethink.utils.GxGeneralUtils;
-import cn.bluethink.utils.GxJsonUtils;
-import com.vividsolutions.jts.io.ParseException;
+package com.appleyk.entity;
+import com.appleyk.model.FeatureAttribute;
+import com.appleyk.model.FeatureModel;
+import com.appleyk.utils.GeneralUtils;
+import com.appleyk.utils.JsonUtils;
+import org.locationtech.jts.io.ParseException;
 import tk.mybatis.mapper.entity.IDynamicTableName;
 
 import javax.persistence.Id;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 /**
  * 不要固定表名，实现IDynamicTableName接口，即可动态控制实体映射的Table
  */
-public class GxFeatureEntity implements IDynamicTableName {
+public class FeatureEntity implements IDynamicTableName {
 
 
     /**
@@ -46,46 +46,46 @@ public class GxFeatureEntity implements IDynamicTableName {
     private String tableName;
 
 
-    public GxFeatureEntity() {
+    public FeatureEntity() {
     }
 
-    public GxFeatureEntity(String tableName) {
+    public FeatureEntity(String tableName) {
         this.tableName = tableName;
     }
 
-    private GxFeatureEntity(GxFeatureModel model) {
+    private FeatureEntity(FeatureModel model) {
         this.id = model.getId();
-        if (GxGeneralUtils.isNotEmpty(model.getAttributes())) {
-            List<GxFeatureAttribute> attributes = model.getAttributes();
+        if (GeneralUtils.isNotEmpty(model.getAttributes())) {
+            List<FeatureAttribute> attributes = model.getAttributes();
             Map<String, Object> attributesMap = new HashMap<>();
             attributes.stream().forEach(a -> attributesMap.put(a.getKey(), a.getValue()));
-            this.attributes = GxJsonUtils.objectToJson(attributesMap);
+            this.attributes = JsonUtils.objectToJson(attributesMap);
         }
         this.metaId = model.getMetaId();
     }
 
-    public static GxFeatureEntity createEntity(GxFeatureModel model) {
-        return new GxFeatureEntity(model);
+    public static FeatureEntity createEntity(FeatureModel model) {
+        return new FeatureEntity(model);
     }
 
-    public static GxFeatureModel createModel(GxFeatureEntity entity) throws IOException, ParseException{
-        GxFeatureModel model = new GxFeatureModel();
+    public static FeatureModel createModel(FeatureEntity entity) throws IOException, ParseException {
+        FeatureModel model = new FeatureModel();
         model.setId(entity.getId());
-        if (GxGeneralUtils.isNotEmpty(entity.getAttributes())) {
-            Map<String, Object> attributesMap = GxJsonUtils.parseMap(entity.getAttributes());
-            List<GxFeatureAttribute> attributes = attributesMap.entrySet().stream().map(e -> new GxFeatureAttribute(e.getKey(), e.getValue())).collect(Collectors.toList());
+        if (GeneralUtils.isNotEmpty(entity.getAttributes())) {
+            Map<String, Object> attributesMap = JsonUtils.parseMap(entity.getAttributes());
+            List<FeatureAttribute> attributes = attributesMap.entrySet().stream().map(e -> new FeatureAttribute(e.getKey(), e.getValue())).collect(Collectors.toList());
             model.setAttributes(attributes);
         }
         model.setMetaId(entity.getMetaId());
         return model;
     }
 
-    public static List<GxFeatureModel> createModelList(List<GxFeatureEntity> featureEntities) throws IOException, ParseException {
-        List<GxFeatureModel> featureModels = new ArrayList<>();
-        if (GxGeneralUtils.isEmpty(featureEntities)) {
+    public static List<FeatureModel> createModelList(List<FeatureEntity> featureEntities) throws IOException, ParseException {
+        List<FeatureModel> featureModels = new ArrayList<>();
+        if (GeneralUtils.isEmpty(featureEntities)) {
             return featureModels;
         }
-        for (GxFeatureEntity featureEntity : featureEntities) {
+        for (FeatureEntity featureEntity : featureEntities) {
             featureModels.add(createModel(featureEntity));
         }
         return featureModels;

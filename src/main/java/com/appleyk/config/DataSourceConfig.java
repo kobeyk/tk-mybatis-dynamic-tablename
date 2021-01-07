@@ -1,4 +1,4 @@
-package cn.bluethink.config;
+package com.appleyk.config;
 
 
 import com.zaxxer.hikari.HikariDataSource;
@@ -20,9 +20,9 @@ import javax.sql.DataSource;
 
 
 @EnableTransactionManagement
-@MapperScan(basePackages = {"cn.bluethink.mapper"}, sqlSessionTemplateRef  = "sqlSessionTemplate")
+@MapperScan(basePackages = {"com.appleyk.mapper"}, sqlSessionTemplateRef  = "sqlSessionTemplate")
 @Configuration
-public class GxDataSourceConfig {
+public class DataSourceConfig {
 
     @Primary
     @Bean(name = "dtDatasource")

@@ -1,12 +1,12 @@
-package cn.bluethink.mapper;
+package com.appleyk.mapper;
 
-import cn.bluethink.entity.GxFeatureEntity;
+import com.appleyk.entity.FeatureEntity;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-public interface GxFeatureMapper extends Mapper<GxFeatureEntity> {
+public interface FeatureMapper extends Mapper<FeatureEntity> {
 
     /**
      * <p>创建要素表&创建索引&创建主键ID</p>
@@ -20,7 +20,7 @@ public interface GxFeatureMapper extends Mapper<GxFeatureEntity> {
      * @param groupId 数据组ID
      * @return List<GxFeatureEntity>
      */
-    List<GxFeatureEntity> getFeatures(@Param("groupId") Long groupId);
+    List<FeatureEntity> getFeatures(@Param("groupId") Long groupId);
 
     /**
      * <p>保存要素实体</p>
@@ -28,6 +28,6 @@ public interface GxFeatureMapper extends Mapper<GxFeatureEntity> {
      * @param featureEntity 矢量要素数据实体对象
      * @return Integer
      */
-    Integer saveFeature(Long groupId,GxFeatureEntity featureEntity);
+    Integer saveFeature(Long groupId, FeatureEntity featureEntity);
 
 }

@@ -1,23 +1,18 @@
-package cn.bluethink.model;
+package com.appleyk.model;
 
 import java.util.List;
 
-/**
- * @author: tunan
- * @version: v.1.0.1
- * @date: created on 14:13 2019-06-28
- */
-public class GxFeatureModel {
+public class FeatureModel {
 
     private Long id;
 
     private Long metaId;
 
-    private List<GxFeatureAttribute> attributes;
+    private List<FeatureAttribute> attributes;
 
     private String geometry;
 
-    public GxFeatureModel() {
+    public FeatureModel() {
     }
 
     public Long getId() {
@@ -36,11 +31,11 @@ public class GxFeatureModel {
         this.metaId = metaId;
     }
 
-    public List<GxFeatureAttribute> getAttributes() {
+    public List<FeatureAttribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<GxFeatureAttribute> attributes) {
+    public void setAttributes(List<FeatureAttribute> attributes) {
         this.attributes = attributes;
     }
 

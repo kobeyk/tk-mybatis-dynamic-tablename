@@ -1,8 +1,8 @@
 package DynamicTableTest;
 
-import cn.bluethink.App;
-import cn.bluethink.entity.GxFeatureEntity;
-import cn.bluethink.mapper.GxFeatureMapper;
+import com.appleyk.App;
+import com.appleyk.entity.FeatureEntity;
+import com.appleyk.mapper.FeatureMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,13 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = App.class)
 public class DTTest {
 
     @Autowired
-    protected GxFeatureMapper featureMapper;
+    protected FeatureMapper featureMapper;
 
 
     /**
@@ -36,7 +37,7 @@ public class DTTest {
     public void query() {
         long groupId = System.currentTimeMillis();
         featureMapper.createFeature(groupId);
-        List<GxFeatureEntity> features = featureMapper.getFeatures(groupId);
+        List<FeatureEntity> features = featureMapper.getFeatures(groupId);
         System.out.println("查询结果：" + features);
     }
 
@@ -46,9 +47,9 @@ public class DTTest {
      */
     @Test
     public void find(){
-        Example example = new Example(GxFeatureEntity.class);
+        Example example = new Example(FeatureEntity.class);
         example.setTableName("gx_feature_1572360438542");
-        List<GxFeatureEntity> featureEntities = featureMapper.selectByExample(example);
+        List<FeatureEntity> featureEntities = featureMapper.selectByExample(example);
         System.out.println("结果SIZE："+featureEntities.size());
     }
 
@@ -58,7 +59,7 @@ public class DTTest {
      */
     @Test
     public void save(){
-        GxFeatureEntity entity = new GxFeatureEntity("gx_feature_1572360438542");
+        FeatureEntity entity = new FeatureEntity("gx_feature_1572360438542");
         entity.setId(System.currentTimeMillis());
         entity.setMetaId(System.currentTimeMillis());
         int insert = featureMapper.insert(entity);

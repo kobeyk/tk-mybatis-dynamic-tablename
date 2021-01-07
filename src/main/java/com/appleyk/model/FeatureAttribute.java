@@ -1,18 +1,14 @@
-package cn.bluethink.model;
+package com.appleyk.model;
 
-/**
- * @author: tunan
- * @version: v.1.0.1
- * @date: created on 16:01 2019-06-28
- */
-public class GxFeatureAttribute {
+public class FeatureAttribute {
+
     private String key;
     private Object value;
 
-    public GxFeatureAttribute() {
+    public FeatureAttribute() {
     }
 
-    public GxFeatureAttribute(String key, Object value) {
+    public FeatureAttribute(String key, Object value) {
         this.key = key;
         this.value = value;
     }

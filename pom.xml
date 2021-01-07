@@ -12,7 +12,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cn.bluethink</groupId>
+    <groupId>com.appleyk</groupId>
     <artifactId>tk-mybatis-dt</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
@@ -26,16 +26,25 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <servlet-api.version>3.1.0</servlet-api.version>
         <jackson.version>2.9.6</jackson.version>
-        <geotools.version>18.0</geotools.version>
+        <geotools.version>20.0</geotools.version>
         <postgresql.version>42.2.5</postgresql.version>
         <skipTests>true</skipTests>
     </properties>
 
     <repositories>
         <repository>
-            <id>osgeo-repos</id>
-            <name>osgeo Repository</name>
-            <url>http://download.osgeo.org/webdav/geotools/</url>
+            <id>osgeo</id>
+            <name>OSGeo Release Repository</name>
+            <url>https://repo.osgeo.org/repository/release/</url>
+            <snapshots><enabled>false</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+        <repository>
+            <id>osgeo-snapshot</id>
+            <name>OSGeo Snapshot Repository</name>
+            <url>https://repo.osgeo.org/repository/snapshot/</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>false</enabled></releases>
         </repository>
     </repositories>
 
@@ -86,19 +95,6 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
-        </dependency>
-
-        <!-- jackson -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
 
         <dependency>

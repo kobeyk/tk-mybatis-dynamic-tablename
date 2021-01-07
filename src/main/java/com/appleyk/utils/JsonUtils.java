@@ -1,4 +1,4 @@
-package cn.bluethink.utils;
+package com.appleyk.utils;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,14 +11,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author 苏州中科蓝迪
- */
-public class GxJsonUtils {
+public class JsonUtils {
 
-    /**
-     * 定义jackson对象
-     */
+    /**定义jackson对象*/
     public static final ObjectMapper MAPPER = new ObjectMapper();
 
     static {
@@ -26,10 +21,8 @@ public class GxJsonUtils {
         MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         // 如果json字符串中含有新行时，加上这个
         MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
-
         MAPPER.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-
         // 空值转换异常
         MAPPER.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
     }
